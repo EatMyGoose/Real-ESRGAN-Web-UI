@@ -1,0 +1,72 @@
+[
+    {
+        "name": "RealESRGAN_x4plus",
+        "type": "rrdbnet",
+        "urls": ["https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESRGAN_x4plus.pth"],
+        "params": {
+            "num_in_ch": 3,
+            "num_out_ch": 3,
+            "num_feat": 64,
+            "num_block": 23,
+            "num_grow_ch": 32,
+            "scale": 4
+        }
+    },
+    {
+        "name": "RealESRNet_x4plus",
+        "type": "rrdbnet",
+        "urls": ["https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.1/RealESRNet_x4plus.pth"],
+        "params": {
+            "num_in_ch": 3,
+            "num_out_ch": 3,
+            "num_feat": 64,
+            "num_block": 23,
+            "num_grow_ch": 32,
+            "scale": 4
+        }
+    },
+    {
+        "name": "RealESRGAN_x4plus_anime_6B",
+        "type": "rrdbnet",
+        "urls": ["https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.2.4/RealESRGAN_x4plus_anime_6B.pth"],
+        "params": {
+            "num_in_ch": 3,
+            "num_out_ch": 3,
+            "num_feat": 64,
+            "num_block": 6,
+            "num_grow_ch": 32,
+            "scale": 4
+        }
+    },
+    {
+        "name": "RealESRGAN_x2plus",
+        "type": "rrdbnet",
+        "urls": ["https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.1/RealESRGAN_x2plus.pth"],
+        "params": {
+            "num_in_ch": 3,
+            "num_out_ch": 3,
+            "num_feat": 64,
+            "num_block": 23,
+            "num_grow_ch": 32,
+            "scale": 2
+        }
+    },
+    {
+        "name": "realesr-general-x4v3",
+        "type": "srvggnet",
+        "urls": ["https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesr-general-x4v3.pth", "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesr-general-wdn-x4v3.pth"],
+        "params": {
+            "num_in_ch": 3,
+            "num_out_ch": 3,
+            "num_feat": 64,
+            "num_conv": 32,
+            "upscale": 4,
+            "act_type": "prelu"
+        }
+    },
+    {
+        "name": "GFPGANv1.3",
+        "type": "face-enhance",
+        "urls": ["https://github.com/TencentARC/GFPGAN/releases/download/v1.3.0/GFPGANv1.3.pth"]
+    }
+]
