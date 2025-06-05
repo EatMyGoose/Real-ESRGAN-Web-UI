@@ -1,14 +1,15 @@
 from pathlib import Path
-from schemas import Model, ModelList, TModelNames, TFaceEnhancementModel
-from typing import Dict, List, Union, Set, Any
+from typing import Dict, List, Union, Any
 from loguru import logger
 from torch.hub import download_url_to_file
 
 from basicsr.archs.rrdbnet_arch import RRDBNet
 from realesrgan.archs.srvgg_arch import SRVGGNetCompact
 from gfpgan import GFPGANer
-from realesrgan import RealESRGANer
+from realesrgan.utils import RealESRGANer
 from pathlib import Path
+
+from server.schemas import Model, ModelList, TModelNames, TFaceEnhancementModel
 
 def omit(values : Dict[str, Any], omitted: List[str]) -> Dict[str, Any]:
     copy = values.copy()

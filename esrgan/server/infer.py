@@ -1,12 +1,11 @@
 from typing import Optional, Union
-
-from realesrgan import RealESRGANer
-from util import model_params, get_model_path, get_dni_weights, make_model, make_face_enhancement_model, omit
 from loguru import logger
 import cv2
 import numpy as np
 
-import schemas
+from realesrgan import RealESRGANer
+from server.util import model_params, get_model_path, get_dni_weights, make_model, make_face_enhancement_model, omit
+from server import schemas
 
 def infer(
     image_extension: str, # includes the dot

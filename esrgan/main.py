@@ -1,11 +1,12 @@
 from fastapi import FastAPI
-from infer import infer
 from typing_extensions import Annotated
 from typing import Optional
 from fastapi import FastAPI, File, Form, UploadFile, Response
-import schemas
 from pathlib import Path
 from urllib.parse import quote
+
+from server import schemas
+from server.infer import infer
 
 app = FastAPI()
 
