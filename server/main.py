@@ -5,8 +5,13 @@ from typing import Optional
 from fastapi import FastAPI, File, Form, UploadFile, Response
 import schemas
 from pathlib import Path
+from urllib.parse import quote
 
 app = FastAPI()
+
+@app.get("/health")
+async def heatlh_check():
+    return {"status": "healthy"}
 
 @app.post("/upscale")
 async def root(
@@ -42,6 +47,6 @@ async def root(
         result_bytes,
         media_type="application/octet",
         headers={
-            "Content-Disposition": f"attachment; filename=\"{file.filename}\""
+            "Content-Disposition": f"attachment; filename=\"{'upscaled' + file_ext}\";filename*=UTF-8''{quote(file.filename)}"
         }
     )
