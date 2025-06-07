@@ -5,7 +5,7 @@ results/*
 tb_logger/*
 wandb/*
 tmp/*
-weights/*
+esrgan/weights/*
 
 version.py
 

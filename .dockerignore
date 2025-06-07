@@ -1,0 +1,9 @@
+esrgan/weights/*
+tests
+gfpgan
+.github
+.vscode
+.venv
+__pycache__
+inputs
+

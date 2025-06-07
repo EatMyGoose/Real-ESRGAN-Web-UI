@@ -95,7 +95,7 @@ dependencies = [
     { name = "scikit-image" },
     { name = "scipy" },
     { name = "tb-nightly", version = "2.14.0a20230808", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
-    { name = "tb-nightly", version = "2.20.0a20250605", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
+    { name = "tb-nightly", version = "2.20.0a20250606", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
     { name = "torch" },
     { name = "torchvision" },
     { name = "tqdm" },
@@ -711,7 +711,7 @@ dependencies = [
     { name = "pyyaml" },
     { name = "scipy" },
     { name = "tb-nightly", version = "2.14.0a20230808", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
-    { name = "tb-nightly", version = "2.20.0a20250605", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
+    { name = "tb-nightly", version = "2.20.0a20250606", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
     { name = "torch" },
     { name = "torchvision" },
     { name = "tqdm" },
@@ -1959,6 +1959,29 @@ wheels = [
 ]
 
 [[package]]
+name = "opencv-python-headless"
+version = "4.5.3.56"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/86/39/6984a884aafa907e639fd6b203ae22f99cd65278d7a87b2103eb9469249b/opencv-python-headless-4.5.3.56.tar.gz", hash = "sha256:3308d22efec8a69932709fc76456ef7e0d1cd9eb2272d94b7e5df0674d3e324f", size = 89214017, upload-time = "2021-07-11T05:18:40.91Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/4c/20/8fd385a0dfb23821de65fdd750598a9ccfd612445d4d5f187bd2ad5b63a8/opencv_python_headless-4.5.3.56-cp38-cp38-macosx_10_15_x86_64.whl", hash = "sha256:bfe8989ed4af5e14ef1480c89fe259f5d4bc66c5ae0e7d56d7c778ef6ebbcdf4", size = 42622422, upload-time = "2021-07-11T05:16:59.567Z" },
+    { url = "https://files.pythonhosted.org/packages/d0/c7/c4a9bfb46dd4c71a19fe78c43c5ef27545950be9b159bca5ed795e4130ae/opencv_python_headless-4.5.3.56-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:1a00d01d8d7250d6b87c63eb7b2df1e541fdb10919c22940cc53884bb12057c9", size = 10658799, upload-time = "2021-07-11T05:15:57.472Z" },
+    { url = "https://files.pythonhosted.org/packages/12/42/f9c620587e4928e6a76f30f7f5190e573b1200fb9c3a22bea5f60fb830b8/opencv_python_headless-4.5.3.56-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:39eaae19d5fa906c7ec2db76447c0ff9df6305633493f1b86e4c0080ed1cb036", size = 21784308, upload-time = "2021-07-11T05:17:26.864Z" },
+    { url = "https://files.pythonhosted.org/packages/9e/13/63b46fadfeb939f0bdfd636de76819b165420649c841ba57d44649613cd1/opencv_python_headless-4.5.3.56-cp38-cp38-manylinux2014_x86_64.whl", hash = "sha256:e19ba664cae0bc6ad39e2fbf3b3f16c93009132f792dcb7ca0105f0cc15997ed", size = 37146704, upload-time = "2021-07-11T05:18:31.961Z" },
+    { url = "https://files.pythonhosted.org/packages/43/0e/5acb26e01a762b20e30ae2183ae2c6f721c3cad341e3e6fc422427d3c98f/opencv_python_headless-4.5.3.56-cp38-cp38-win32.whl", hash = "sha256:ebfeaff7e0bb1c293008a49b2b2c033a7cec3805006a8284fa1a44ad8c30446b", size = 25590708, upload-time = "2021-07-11T05:17:59.853Z" },
+    { url = "https://files.pythonhosted.org/packages/9a/bf/c4a220452691852a22be38c9e34ec41f7a5b3930e541b5d466058f5cdfd5/opencv_python_headless-4.5.3.56-cp38-cp38-win_amd64.whl", hash = "sha256:0efe30ce934ec2ab7272143d17f68885910a715c6aeffd02973c04b3d8b99ca6", size = 34796350, upload-time = "2021-07-11T05:18:03.256Z" },
+    { url = "https://files.pythonhosted.org/packages/ee/c8/e6c9686e035b387267524932cdd6f3f11acddc943bfcdaedb8c44c103a14/opencv_python_headless-4.5.3.56-cp39-cp39-macosx_10_15_x86_64.whl", hash = "sha256:0e8080dc5baf6855b663634d9c7a45732e2999bbe44aa5e4a14c15f3631998e4", size = 42618909, upload-time = "2021-07-11T05:17:04.03Z" },
+    { url = "https://files.pythonhosted.org/packages/c0/06/afbd68f733930c1a4785c2f256a15bd34326074d75100476ef625f85c832/opencv_python_headless-4.5.3.56-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:465b157480902ecd6b2c4c46d547e4cfdec7595177bcc612c6f4c351966a5a1e", size = 10657894, upload-time = "2021-07-11T05:15:59.108Z" },
+    { url = "https://files.pythonhosted.org/packages/ef/44/b5daa5680354897040178dc6ca6994f274f62bb6bf54af2db04e2025373a/opencv_python_headless-4.5.3.56-cp39-cp39-manylinux2014_aarch64.whl", hash = "sha256:d4c784339c366d27d0b4503a073c97a7cd78657937b3755fdbc9168a002f6409", size = 21784199, upload-time = "2021-07-11T05:17:29.351Z" },
+    { url = "https://files.pythonhosted.org/packages/8a/11/52052411eebc30773b997c21be637b7a78dec1c1d440ad08b5bd870088fb/opencv_python_headless-4.5.3.56-cp39-cp39-manylinux2014_x86_64.whl", hash = "sha256:c7a1d365f2f8ce413847479a2d39bee2be6d5027119b08c4c5f6594f1f57673d", size = 37146436, upload-time = "2021-07-11T05:18:35.395Z" },
+    { url = "https://files.pythonhosted.org/packages/72/52/2cca4b885930c0d9963a75a61f0b3367adfe197aeaf6d682d69c375088fc/opencv_python_headless-4.5.3.56-cp39-cp39-win32.whl", hash = "sha256:0935bf569e2edc1af8bc38f00813e37b1ba63e4b2eb0dc48651f405068b8b36d", size = 25588950, upload-time = "2021-07-11T05:18:07.104Z" },
+    { url = "https://files.pythonhosted.org/packages/11/8d/4c0d4a9ab08955222756864808ca27e438ad23939f134fe294d33ac5d881/opencv_python_headless-4.5.3.56-cp39-cp39-win_amd64.whl", hash = "sha256:f1082f4f15a681b435686ed3fc0232128a222fed6792a47fae5cf081eb751ccf", size = 34794518, upload-time = "2021-07-11T05:18:11.322Z" },
+]
+
+[[package]]
 name = "packaging"
 version = "25.0"
 source = { registry = "https://pypi.org/simple" }
@@ -2698,7 +2721,7 @@ dependencies = [
     { name = "gfpgan" },
     { name = "loguru" },
     { name = "numpy" },
-    { name = "opencv-python" },
+    { name = "opencv-python-headless" },
     { name = "pillow", version = "10.4.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
     { name = "pillow", version = "11.2.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
     { name = "torch" },
@@ -2714,7 +2737,7 @@ requires-dist = [
     { name = "gfpgan", specifier = ">=1.3.5" },
     { name = "loguru", specifier = "==0.7.3" },
     { name = "numpy", specifier = "==1.21.1" },
-    { name = "opencv-python", specifier = "==4.5.3.56" },
+    { name = "opencv-python-headless", specifier = "==4.5.3.56" },
     { name = "pillow", specifier = ">=10.4.0" },
     { name = "torch", specifier = ">=1.7" },
     { name = "torchvision", specifier = "==0.16.0" },
@@ -3020,7 +3043,7 @@ wheels = [
 
 [[package]]
 name = "tb-nightly"
-version = "2.20.0a20250605"
+version = "2.20.0a20250606"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
     "python_full_version >= '3.12'",
@@ -3041,7 +3064,7 @@ dependencies = [
     { name = "werkzeug", version = "3.1.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/8e/9b/d23830f5aadaee0b548e8cef93573b90cc6c73fe4cede43af35c7499b28c/tb_nightly-2.20.0a20250605-py3-none-any.whl", hash = "sha256:04fef6152974e97623b12723b0e9c3a73e7318fe36cc2301b2fb8f1d2453503b", size = 5503751, upload-time = "2025-06-05T11:17:31.56Z" },
+    { url = "https://files.pythonhosted.org/packages/51/30/da77ed73fbb9ec68b6281aab5468700885f6e61789be81fdd9099acf5764/tb_nightly-2.20.0a20250606-py3-none-any.whl", hash = "sha256:dfdce8d185c06a52ac473cfddd9bdda22ebfc8913d18e34d4163b2a2e914df58", size = 5503815, upload-time = "2025-06-06T11:13:46.177Z" },
 ]
 
 [[package]]
