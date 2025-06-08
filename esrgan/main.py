@@ -11,7 +11,9 @@ from server import schemas
 from server.infer import infer
 from frontend.main import init_frontend
 
-pool = ProcessPoolExecutor(max_workers=2)
+# allow server to accept more requests even if one is running
+# but only allow processing of a single request at any time
+pool = ProcessPoolExecutor(max_workers=1)
 
 app = FastAPI()
 

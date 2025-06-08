@@ -5,12 +5,10 @@ from nicegui.binding import bindable_dataclass
 from dataclasses import dataclass
 from loguru import logger
 from time import perf_counter
-from nicegui.run import cpu_bound
-from PIL import Image as PILImage
-from io import BytesIO
 
 from frontend.services import post_image
 from frontend.schemas import SingleImageUpscaleRequest
+from frontend.util import get_pil_image
 
 
 model_list: List[str] = [
@@ -75,7 +73,7 @@ async def handle_upscale_image(e: events.ClickEventArguments) -> None:
     start = perf_counter()
     logger.debug("Start of upload")
     try:
-        upscaled_image_bytes = await cpu_bound(post_image, state.image.data, state.image.name, state.image.type, params)
+        upscaled_image_bytes = await post_image(state.image.data, state.image.name, state.image.type, params)
         logger.debug("End of upload")
         upscaled_image.result = Image(upscaled_image_bytes, state.image.name, state.image.type)
         end = perf_counter()
@@ -97,7 +95,7 @@ def delete_all_upscaled_images() -> None:
 
 def output_image(upscaled: UpscaledImage) -> None:
     if(upscaled.result):
-        pil_image = PILImage.open(BytesIO(upscaled.result.data))
+        pil_image = get_pil_image(upscaled.result.data)
         ui.image(pil_image)
         ui.label(f"{upscaled.result.name}, {upscaled.time_taken}s")
         ui.button(upscaled.result.name, on_click=lambda : ui.download.content(upscaled.result.data, upscaled.result.name, upscaled.result.type))
@@ -125,7 +123,7 @@ def main_page() -> None:
     ui.upload(on_upload=handle_upload, label="Source Images", auto_upload=True, max_files=1).props('accept=.jpg,.jpeg,.png')
     ui.button("Upscale", on_click=handle_upscale_image).bind_enabled_from(state, "image",  lambda img : print(img) or img is not None)
 
-    ui.button("Delete all", on_click=lambda x: delete_all_upscaled_images)
+    ui.button("Delete all", on_click=lambda x: delete_all_upscaled_images())
     done_list()
 
 
