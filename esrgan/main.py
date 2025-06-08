@@ -4,9 +4,14 @@ from typing import Optional
 from fastapi import FastAPI, File, Form, UploadFile, Response
 from pathlib import Path
 from urllib.parse import quote
+from concurrent.futures import ProcessPoolExecutor
+import asyncio
 
 from server import schemas
 from server.infer import infer
+from frontend.main import init_frontend
+
+pool = ProcessPoolExecutor(max_workers=2)
 
 app = FastAPI()
 
@@ -30,18 +35,20 @@ async def root(
     file_ext: str = Path(file.filename).suffix.lower()
     file_bytes: bytes = await file.read()
 
-    result_bytes = infer(
-        image_extension=file_ext,
-        image_bytes=file_bytes,
-        model_name=model_name,
-        denoise_strength=denoise_strength,
-        outscale=outscale,
-        tile=tile,
-        tile_pad=tile_pad,
-        pre_pad=pre_pad,
-        face_enhance=face_enhance,
-        fp_32=fp_32,
-        gpu_id=gpu_id
+    loop = asyncio.get_running_loop()
+    result_bytes = await loop.run_in_executor(pool,
+        infer,
+        file_ext,
+        file_bytes,
+        model_name,
+        denoise_strength,
+        outscale,
+        tile,
+        tile_pad,
+        pre_pad,
+        face_enhance,
+        fp_32,
+        gpu_id
     )
 
     return Response(
@@ -51,3 +58,5 @@ async def root(
             "Content-Disposition": f"attachment; filename=\"{'upscaled' + file_ext}\";filename*=UTF-8''{quote(file.filename)}"
         }
     )
+
+init_frontend(app)

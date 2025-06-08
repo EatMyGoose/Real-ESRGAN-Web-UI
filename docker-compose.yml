@@ -1,0 +1,13 @@
+services:
+  esrgan-server:
+    container_name: esrgan-server
+    build:
+      target: dev
+    ports:
+      - "80:8000"
+    develop:
+      watch:
+        - action: sync
+          path: ./esrgan
+          target: /app/esrgan
+

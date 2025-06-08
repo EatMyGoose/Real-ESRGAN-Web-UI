@@ -19,4 +19,4 @@ CMD ["uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port",  "8000",
 
 FROM dev AS prod
 
-CMD ["uv", "run", "fastapi", "dev", "main.py"]
+CMD ["uv", "run", "fastapi", "run", "main.py"]
