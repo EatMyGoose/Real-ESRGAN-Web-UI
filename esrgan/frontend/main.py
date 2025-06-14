@@ -109,6 +109,22 @@ def delete_all_upscaled_images() -> None:
     State.results().clear()
     done_list.refresh()
 
+def settings_tooltip(settings: UpscaleRequest) -> None:
+    with ui.icon("settings", size="sm"):
+        with ui.tooltip():
+            with ui.grid(columns=2).classes("gap-0"):
+                ui.label("Model:")
+                ui.label(settings.model)
+
+                ui.label("Outscale:")
+                ui.label(settings.outscale)
+
+                ui.label("Face Enhance:")
+                ui.label(str(settings.face_enhance))
+
+                ui.label("Denoise Strength:")
+                ui.label(settings.denoise_strength)
+
 def output_image(upscaled: UpscaledImage) -> None:
     with ui.card().tight().classes("w-full"):
         if(upscaled.result):
@@ -120,16 +136,20 @@ def output_image(upscaled: UpscaledImage) -> None:
                     ui.label(f"Processing Time: {upscaled.time_taken:.1f}s")
                     ui.button("Download", on_click=lambda : ui.download.content(upscaled.result.data, upscaled.result.name, upscaled.result.type))
                     ui.button("Delete", on_click=lambda x: delete_upscaled_image(upscaled))
+                    settings_tooltip(upscaled.params)
         elif(upscaled.error):
             with ui.card_section():
                 with ui.row():
                     ui.label("Error:")
                     ui.label(upscaled.error)
                     ui.button("Delete", on_click=lambda x: delete_upscaled_image(upscaled))
+                    settings_tooltip(upscaled.params)
         else:
             ui.skeleton().classes("w-full h-[30em]")
             with ui.card_section():
-                ui.label(f"{upscaled.params.image.name}")
+                with ui.row():
+                    ui.label(f"{upscaled.params.image.name}")
+                    settings_tooltip(upscaled.params)
 
 @ui.refreshable
 def done_list() -> None:
