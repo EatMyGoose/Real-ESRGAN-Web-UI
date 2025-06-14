@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional, List, Callable
 from fastapi import FastAPI
 from nicegui import ui, events, app
 from nicegui.binding import bindable_dataclass
@@ -65,10 +65,6 @@ class State:
             State.__storage_backend()["upscale_results"] = []
 
         return State.__storage_backend()["upscale_results"]
-
-def handle_upload(e: events.UploadEventArguments) -> None:
-    image_bytes =  e.content.read()
-    State.upscale_request().image = Image(image_bytes, e.name, e.type)
 
 async def handle_upscale_image(e: events.ClickEventArguments) -> None:
     logger.debug("Starting event handler")
@@ -151,6 +147,22 @@ def output_image(upscaled: UpscaledImage) -> None:
                     ui.label(f"{upscaled.params.image.name}")
                     settings_tooltip(upscaled.params)
 
+def handle_upload(e: events.UploadEventArguments) -> None:
+    image_bytes =  e.content.read()
+    State.upscale_request().image = Image(image_bytes, e.name, e.type)
+    image_upload.refresh(State.upscale_request().image)
+
+@ui.refreshable
+def image_upload(current_image: Optional[Image]) -> None:
+    with ui.column().classes('w-full gap-2 h-full flex flex-col'):
+        if current_image is not None:
+            ui.image(get_pil_image(current_image.data)).classes("w-full grow")
+        else:
+            with ui.card().classes("w-full flex items-center justify-center grow"):
+                ui.label('No Image Selected')
+        with ui.row().classes('w-full h-[3.5em] overflow-hidden rounded-xl'):
+            ui.upload(on_upload=handle_upload, label="Source Image", auto_upload=True, max_files=1).props('accept=.jpg,.jpeg,.png').classes("w-full")
+
 @ui.refreshable
 def done_list() -> None:
     for item in State.results():
@@ -167,17 +179,21 @@ async def main_page() -> None:
     settings = State.upscale_request()
     with ui.column(align_items="center").classes("w-full"):
         with ui.card().classes("min-w-[40em] w-[50vw]"):
-            ui.upload(on_upload=handle_upload, label="Source Images", auto_upload=True, max_files=1).props('accept=.jpg,.jpeg,.png').classes("w-full h-[48em]")
-            with ui.row(align_items="center").classes("w-full"):
-                ui.select(model_list, label="Upscaling Model").bind_value(settings, "model").classes("grow")
-                ui.select(["4x", "2x", "1x"], label="Outscale", value="4x").bind_value(settings, "outscale").classes("grow")
-                ui.checkbox(text="Face Enhancement", value=False).bind_value(settings, "face_enhance")
-            with ui.row(align_items="center").classes("w-full"):
-                ui.label().bind_text_from(State.upscale_request(), "denoise_strength", lambda val: f"Denoise Strength [{val:.2f}]:")
-                with ui.row().classes("grow"):
-                    ui.slider(min=0, max=1.0, step=0.05).bind_value(settings, "denoise_strength")
+            with ui.row().classes("w-full items-stretch"):
+                with ui.column().classes("grow"):
+                    image_upload(settings.image)
 
-            ui.button("Upscale", on_click=handle_upscale_image).bind_enabled_from(settings, "image",  lambda img : print(img) or img is not None).classes("w-full")
+                with ui.column().classes("grow"):
+                    ui.select(model_list, label="Upscaling Model").bind_value(settings, "model").classes("w-full")
+                    ui.select(["4x", "2x", "1x"], label="Outscale", value="4x").bind_value(settings, "outscale").classes("w-full")
+                    with ui.row(align_items="center").classes("w-full"):
+                        ui.label().bind_text_from(State.upscale_request(), "denoise_strength", lambda val: f"Denoise Strength [{val:.2f}]:")
+                        with ui.row().classes("grow"):
+                            ui.slider(min=0, max=1.0, step=0.05).bind_value(settings, "denoise_strength")
+
+                    ui.checkbox(text="Face Enhancement", value=False).bind_value(settings, "face_enhance").classes("w-full mx-0")
+
+                    ui.button("Upscale", on_click=handle_upscale_image).bind_enabled_from(settings, "image",  lambda img : img is not None).classes("w-full")
 
         with ui.card().classes("min-w-[40em] w-[50vw]"):
             ui.button("Delete all", icon="delete", on_click=lambda x: delete_all_upscaled_images()).classes("w-full")
