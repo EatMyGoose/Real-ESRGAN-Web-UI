@@ -22,7 +22,7 @@ async def heatlh_check():
     return {"status": "healthy"}
 
 @app.post("/upscale")
-async def root(
+async def upscale(
     file: Annotated[UploadFile, File()],
     model_name: Annotated[schemas.TModelNames, Form()] = 0.5,
     denoise_strength: Annotated[float, Form()] = 4,

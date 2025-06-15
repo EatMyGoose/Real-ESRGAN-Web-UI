@@ -9,6 +9,7 @@ from time import perf_counter
 from frontend.services import post_image
 from frontend.schemas import SingleImageUpscaleRequest
 from frontend.util import get_pil_image
+from frontend.favicon import favicon
 
 model_list: List[str] = [
     "RealESRGAN_x4plus",
@@ -205,7 +206,8 @@ def done_list() -> None:
         with ui.column().classes("w-full h-[40em] p-2"):
             with ui.card().classes("w-full h-full flex items-center justify-center"):
                 ui.label('No Images Upscaled yet').classes("text-lg")
-    for item in State.results():
+    # Show newest images first
+    for item in reversed(State.results()):
         output_image(item)
 
 def header() -> None:
@@ -229,5 +231,6 @@ def init_frontend(app: FastAPI) -> None:
     logger.info("Attaching UI")
     ui.run_with(
         app=app,
-        title="Real-ESRGANs UI",
+        title="Real-ESRGAN Web UI",
+        favicon=favicon
     )
