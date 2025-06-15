@@ -8,7 +8,7 @@ packaged as a dockerized project to simplify installation.
 ## Installation
 
 ### Prerequisites
-- *Docker Desktop* must be installed
+- Ensure *Docker Desktop* is installed
 
 ### Launching the application
 - Clone the project
@@ -25,6 +25,6 @@ packaged as a dockerized project to simplify installation.
 * GPU acceleration is not enabled
 
 ## Disclaimer
-This project is unaffliated with [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) (License file titled *REALESRGAN-LICENSE*)
+This project is unaffiliated with [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) (license file titled *REALESRGAN-LICENSE*)
 
 
